@@ -1,0 +1,31 @@
+export const states = [
+   { uf: 'AC', full_uf: 'Acre' },
+   { uf: 'AL', full_uf: 'Alagoas' },
+   { uf: 'AP', full_uf: 'Amapá' },
+   { uf: 'AM', full_uf: 'Amazonas' },
+   { uf: 'BA', full_uf: 'Bahia' },
+   { uf: 'CE', full_uf: 'Ceará' },
+   { uf: 'DF', full_uf: 'Distrito Federal' },
+   { uf: 'ES', full_uf: 'Espirito Santo' },
+   { uf: 'GO', full_uf: 'Goiás' },
+   { uf: 'MA', full_uf: 'Maranhão' },
+   { uf: 'MS', full_uf: 'Mato Grosso do Sul' },
+   { uf: 'MT', full_uf: 'Mato Grosso' },
+   { uf: 'MG', full_uf: 'Minas Gerais' },
+   { uf: 'PA', full_uf: 'Pará' },
+   { uf: 'PB', full_uf: 'Paraíba' },
+   { uf: 'PR', full_uf: 'Paraná' },
+   { uf: 'PE', full_uf: 'Pernambuco' },
+   { uf: 'PI', full_uf: 'Piauí' },
+   { uf: 'RJ', full_uf: 'Rio de Janeiro' },
+   { uf: 'RN', full_uf: 'Rio Grande do Norte' },
+   { uf: 'RS', full_uf: 'Rio Grande do Sul' },
+   { uf: 'RO', full_uf: 'Rondônia' },
+   { uf: 'RR', full_uf: 'Roraima' },
+   { uf: 'SC', full_uf: 'Santa Catarina' },
+   { uf: 'SP', full_uf: 'São Paulo' },
+   { uf: 'SE', full_uf: 'Sergipe' },
+   { uf: 'TO', full_uf: 'Tocantins' }
+] as const;
+
+export type UFBrazil = typeof states[number]['uf'];

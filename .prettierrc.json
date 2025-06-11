@@ -1,0 +1,23 @@
+{
+  "semi": true,
+  "tabWidth": 3,
+  "printWidth": 100,
+  "singleQuote": true,
+  "bracketSpacing": true,
+  "trailingComma": "all",
+  "plugins": ["@trivago/prettier-plugin-sort-imports"],
+  "importOrder": [
+    "^react$",
+    "^react-dom(.*)$",
+    "^@/services/(.*)$",
+    "^@heroui/(.*)$",
+    "^@/helpers/(.*)$",
+    "^@/components/(.*)$",
+    "^@/hooks/(.*)$",
+    "^@/(.*)$",
+    "^[^.](.*)$",
+    "^[./]"
+  ],
+  "importOrderSeparation": false,
+  "importOrderSortSpecifiers": true
+}
