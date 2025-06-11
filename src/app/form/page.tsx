@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react';
-import { useGenerateCpf } from '@/services/mutations';
-import { Badge } from '@heroui/badge';
 import { Card, CardBody, CardFooter, CardHeader } from '@heroui/card';
 import { Chip } from '@heroui/chip';
 import { Divider } from '@heroui/divider';
-import { Button } from '@heroui/react';
 import { sendMessageToActiveTab } from '@/helpers/browser.ts';
 import { FormField, FormReturn } from '@/types/forms.ts';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, RefreshCcw } from 'lucide-react';
 import { Code } from '@heroui/code';
+import AutoFillManager from '@/components/auto-fill-manager';
+import { Button } from '@heroui/react';
 
 export default () => {
    const [forms, setForms] = useState<FormReturn[]>([]);
@@ -24,8 +23,6 @@ export default () => {
       );
    };
 
-   const onGetCpf = useGenerateCpf();
-
    const fetchFields = async () => {
       try {
          const response = await sendMessageToActiveTab<FormReturn[]>({
@@ -40,8 +37,7 @@ export default () => {
       setInitialLoading(false);
    };
 
-   const fillField = async (field: FormField) => {
-      const value = 'Valor do campo';
+   const fillField = async (field: FormField, value: string) => {
       const response = await sendMessageToActiveTab<{ success: boolean }>({
          action: 'FILL_FIELD',
          payload: {
@@ -65,7 +61,17 @@ export default () => {
          )}
          {forms.map((form) => (
             <div>
-               <h4 className={'text-2xl mb-4'}>FormId: {form.formId}</h4>
+               <div className={'flex items-center mb-10 justify-between'}>
+                  <div className={'flex items-center gap-2'}>
+                     <ArrowRight size={16} />
+                     <h3 className={'text-lg fw-bold'}>
+                        {form.formId}
+                     </h3>
+                  </div>
+                  <Button isIconOnly size={'sm'} onPress={() => fetchFields()}>
+                     <RefreshCcw size={16} />
+                  </Button>
+               </div>
                <div className="space-y-8">
                   {form.fields.map((field, index) => (
                      <div className={'relative'} key={index}>
@@ -97,13 +103,7 @@ export default () => {
                            </CardBody>
                            <Divider />
                            <CardFooter>
-                              <Button
-                                 size={'sm'}
-                                 onPress={() => fillField(field)}
-                                 color={'primary'}
-                              >
-                                 Opcao 1
-                              </Button>
+                              <AutoFillManager field={field} onFill={fillField} />
                            </CardFooter>
                         </Card>
                      </div>
